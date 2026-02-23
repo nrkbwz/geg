@@ -1,34 +1,30 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Өту...</title>
+    <title>Байланыс...</title>
+
     <script>
     !function (w, d, t) {
-      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t.instances[e]=w[t][e]||{n:e,track:function(){var r=Array.prototype.slice.call(arguments);r.unshift(e,t.instances[e].n),w[t].push(r)}};for(var n=0;n<t.methods.length;n++)ttq.setAndDefer(t,t.methods[n])};ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<t.methods.length;n++)ttq.setAndDefer(e,t.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-      
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t.instances[e]=w[t][e]||{n:e,track:function(){var r=Array.prototype.slice.call(arguments);r.unshift(e,t.instances[e].n),w[t].push(r)}};for(var n=0;n<t.methods.length;n++)ttq.setAndDefer(e,e.methods[n])};ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<t.methods.length;n++)ttq.setAndDefer(e,e.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+
+      // Инициализация твоего пикселя
       ttq.load('D6E9U33C77UCMRB2K85G');
       ttq.page();
     }(window, document, 'ttq');
 
-    function startTransition() {
-        // 1. Сначала МЕНЯЕМ ТЕКСТ (это сработает мгновенно)
-        var btn = document.getElementById('mainBtn');
+    // Функция перехода, которую мы повесим на кнопку
+    function handleButtonClick() {
+        // Отправляем событие Contact (как это делает Tilda)
+        ttq.track('Contact');
+
+        // Меняем текст кнопки для контроля
+        var btn = document.getElementById('cta-button');
         btn.innerText = 'Жүктелуде...';
-        btn.style.opacity = '0.7';
+        btn.style.background = '#333';
 
-        // 2. Пытаемся отправить событие (в блоке try, чтобы не было ошибки)
-        try {
-            if (typeof ttq !== 'undefined') {
-                ttq.track('Contact');
-                console.log('TikTok event sent');
-            }
-        } catch (e) {
-            console.log('TikTok error:', e);
-        }
-
-        // 3. Переход в Telegram через 1.5 секунды
+        // Даем пикселю 1.5 секунды, чтобы сигнал улетел, и делаем переход
         setTimeout(function() {
             window.location.href = "https://t.me/kuralai_trading";
         }, 1500);
@@ -36,22 +32,12 @@
     </script>
 
     <style>
-        body { background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
-        .btn { 
-            background: #fe2c55; 
-            color: #fff; 
-            padding: 20px 40px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-size: 20px; 
-            font-weight: bold; 
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(254, 44, 85, 0.4);
-        }
+        body { background: #000; color: #fff; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .btn { background: #fe2c55; color: #fff; padding: 20px 45px; border-radius: 50px; text-decoration: none; font-size: 20px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s; }
+        .btn:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
-    <button id="mainBtn" class="btn" onclick="startTransition()">TELEGRAM-ҒА ӨТУ</button>
+    <button id="cta-button" class="btn" onclick="handleButtonClick()">МЕНЕДЖЕРГЕ ЖАЗУ 💬</button>
 </body>
 </html>
