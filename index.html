@@ -1,47 +1,35 @@
 <!DOCTYPE html>
-<html lang="kk">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Жүктелуде...</title>
-    
+    <title>Загрузка...</title>
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t.instances[e]=w[t][e]||{n:e,track:function(){var r=Array.prototype.slice.call(arguments);r.unshift(e,t.instances[e].n),w[t].push(r)}};for(var n=0;n<t.methods.length;n++)ttq.setAndDefer(t,t.methods[n])};ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<t.methods.length;n++)ttq.setAndDefer(e,t.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
 
-      // ЗАГРУЗКА ПИКСЕЛЯ
+      // 1. ТВОЙ DATA SET ID
       ttq.load('D6E9U33C77UCMRB2K85G');
       ttq.page();
-      
-      // Функция отправки события
-      function sendEvent() {
-          ttq.track('Contact');
-          console.log('Event Contact sent');
-      }
-      
-      // Отправляем автоматически через 1 секунду
-      setTimeout(sendEvent, 1000);
 
-      // Редирект только через 4 секунды (чтобы скрипт ТОЧНО успел прогрузиться)
-      setTimeout(function(){
-          window.location.href = "https://t.me/kuralai_trading";
-      }, 4000);
+      // 2. ОТПРАВКА СОБЫТИЯ
+      // ВНИМАНИЕ: Замени 'ТВОЙ_КОД' на тот код из вкладки Test Events (напр. 'TEST1234')
+      ttq.track('Contact', {
+          "tt_test_id": "TEST09059" 
+      });
     }(window, document, 'ttq');
     </script>
-    <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; background-color: #f0f2f5; color: #333; }
-        .loader-container { text-align: center; padding: 20px; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #00f2ea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .btn { display: inline-block; margin-top: 15px; padding: 10px 20px; background: #fe2c55; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-    </style>
+
+    <script>
+        // Редирект через 5 секунд, чтобы точно всё успело улететь
+        setTimeout(function(){
+            window.location.href = "https://t.me/kuralai_trading";
+        }, 5000);
+    </script>
 </head>
-<body>
-    <div class="loader-container">
-        <div class="spinner"></div>
-        <h2>Байланыс орнатылуда...</h2>
-        <p>Қазір Телеграмға өтесіз</p>
-        <a href="https://t.me/kuralai_trading" class="btn" onclick="sendEvent()">ӨТУ</a>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; background: #000; color: #fff;">
+    <div style="text-align: center;">
+        <h2 style="color: #00f2ea;">Байланыс орнатылуда...</h2>
+        <p>ТикТок деректерді қабылдауда. Күте тұрыңыз.</p>
     </div>
 </body>
-</html>                
+</html>
