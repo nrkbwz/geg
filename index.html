@@ -7,38 +7,47 @@
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t.instances[e]=w[t][e]||{n:e,track:function(){var r=Array.prototype.slice.call(arguments);r.unshift(e,t.instances[e].n),w[t].push(r)}};for(var n=0;n<t.methods.length;n++)ttq.setAndDefer(t,t.methods[n])};ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<t.methods.length;n++)ttq.setAndDefer(e,t.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
-
+      
       ttq.load('D6E9U33C77UCMRB2K85G');
       ttq.page();
     }(window, document, 'ttq');
 
-    // Функция перехода
-    function startTransition(e) {
-        // Отправляем событие в TikTok
-        ttq.track('Contact');
-        
-        // Меняем текст на кнопке, чтобы ты видела, что клик прошел
-        document.getElementById('mainBtn').innerText = 'Күте тұрыңыз...';
-        
-        // Переход в Telegram через небольшую паузу
+    function startTransition() {
+        // 1. Сначала МЕНЯЕМ ТЕКСТ (это сработает мгновенно)
+        var btn = document.getElementById('mainBtn');
+        btn.innerText = 'Жүктелуде...';
+        btn.style.opacity = '0.7';
+
+        // 2. Пытаемся отправить событие (в блоке try, чтобы не было ошибки)
+        try {
+            if (typeof ttq !== 'undefined') {
+                ttq.track('Contact');
+                console.log('TikTok event sent');
+            }
+        } catch (e) {
+            console.log('TikTok error:', e);
+        }
+
+        // 3. Переход в Telegram через 1.5 секунды
         setTimeout(function() {
             window.location.href = "https://t.me/kuralai_trading";
-        }, 500);
+        }, 1500);
     }
     </script>
 
     <style>
-        body { background: #000; color: #fff; font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        body { background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; }
         .btn { 
             background: #fe2c55; 
             color: #fff; 
-            padding: 20px 50px; 
-            border-radius: 12px; 
+            padding: 20px 40px; 
+            border-radius: 50px; 
             text-decoration: none; 
-            font-size: 22px; 
+            font-size: 20px; 
             font-weight: bold; 
             border: none;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(254, 44, 85, 0.4);
         }
     </style>
 </head>
