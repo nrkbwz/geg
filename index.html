@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="kk">
 <head>
     <meta charset="UTF-8">
-    <title>TikTok Pixel Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Өту...</title>
     <script>
     !function (w, d, t) {
       w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t.instances[e]=w[t][e]||{n:e,track:function(){var r=Array.prototype.slice.call(arguments);r.unshift(e,t.instances[e].n),w[t].push(r)}};for(var n=0;n<t.methods.length;n++)ttq.setAndDefer(t,t.methods[n])};ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<t.methods.length;n++)ttq.setAndDefer(e,t.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=d.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=d.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
@@ -11,18 +12,37 @@
       ttq.page();
     }(window, document, 'ttq');
 
-    function sendManualEvent() {
+    // Функция перехода
+    function startTransition(e) {
+        // Отправляем событие в TikTok
         ttq.track('Contact');
-        alert('Сигнал отправлен! Проверь TikTok Events Manager');
-        window.location.href = "https://t.me/kuralai_trading";
+        
+        // Меняем текст на кнопке, чтобы ты видела, что клик прошел
+        document.getElementById('mainBtn').innerText = 'Күте тұрыңыз...';
+        
+        // Переход в Telegram через небольшую паузу
+        setTimeout(function() {
+            window.location.href = "https://t.me/kuralai_trading";
+        }, 500);
     }
     </script>
+
+    <style>
+        body { background: #000; color: #fff; font-family: -apple-system, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .btn { 
+            background: #fe2c55; 
+            color: #fff; 
+            padding: 20px 50px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            font-size: 22px; 
+            font-weight: bold; 
+            border: none;
+            cursor: pointer;
+        }
+    </style>
 </head>
-<body style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: sans-serif; flex-direction: column;">
-    <h1>Проверка Пикселя</h1>
-    <p>Если ТикТок его не видит, нажми на кнопку ниже:</p>
-    <button onclick="sendManualEvent()" style="padding: 20px 40px; background: #fe2c55; color: white; border: none; border-radius: 10px; font-size: 20px; cursor: pointer;">
-        ОТПРАВИТЬ СОБЫТИЕ И ПЕРЕЙТИ
-    </button>
+<body>
+    <button id="mainBtn" class="btn" onclick="startTransition()">TELEGRAM-ҒА ӨТУ</button>
 </body>
 </html>
